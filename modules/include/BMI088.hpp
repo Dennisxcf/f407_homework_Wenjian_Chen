@@ -19,6 +19,17 @@ enum BMI088_SENSOR
 
 /*---------------------------硬件连接---------------------------*/
 // TODO: 配置 BMI088 使用的 SPI 句柄，以及加速度计和陀螺仪各自的 GPIO 片选端口、引脚。
+// ---------------------------------------------------------------------------
+// [AI] 以下为实现。依据 board/board.ioc 与 gpio.c：C 板上 BMI088 挂在 SPI1 上
+//      SPI1：PB3=SCK / PB4=MISO / PB5=MOSI（Mode0、8bit、MSB first、1.3125Mbps）
+//      加速度计片选 PA4、陀螺仪片选 PB0，两脚已在 MX_GPIO_Init 里配成推挽输出
+#define BMI088_SPI_HANDLE     hspi1      //< 使用的 SPI 句柄
+#define BMI088_ACC_CS_PORT    GPIOA      //< 加速度计片选端口
+#define BMI088_ACC_CS_PIN     GPIO_PIN_4 //< 加速度计片选引脚
+#define BMI088_GYRO_CS_PORT   GPIOB      //< 陀螺仪片选端口
+#define BMI088_GYRO_CS_PIN    GPIO_PIN_0 //< 陀螺仪片选引脚
+#define BMI088_SPI_TIMEOUT_MS 50U        //< 单次 SPI 事务超时(ms)
+// ---------------------------------------------------------------------------
 
 #define HEATING_RESISTANCE_TIM htim10            //< 加热电阻定时器
 #define HEATING_RESISTANCE_CHANNEL TIM_CHANNEL_1 //< 加热电阻通道

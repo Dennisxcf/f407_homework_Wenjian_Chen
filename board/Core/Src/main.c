@@ -17,8 +17,8 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include "app_threadx.h"
 #include "main.h"
-#include "cmsis_os.h"
 #include "can.h"
 #include "i2c.h"
 #include "spi.h"
@@ -28,7 +28,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "bsp.hpp" /* [AI] 追加：bsp_Init() 的声明 */
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,7 +54,6 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -98,16 +97,15 @@ int main(void)
   MX_SPI1_Init();
   MX_TIM1_Init();
   MX_UART4_Init();
+  MX_CAN2_Init();
+  MX_TIM10_Init();
+  MX_USART1_UART_Init();
+  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  bsp_Init();
   /* USER CODE END 2 */
 
-  /* Init scheduler */
-  osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
-  MX_FREERTOS_Init();
-
-  /* Start scheduler */
-  osKernelStart();
+  MX_ThreadX_Init();
 
   /* We should never get here as control is now taken by the scheduler */
 
