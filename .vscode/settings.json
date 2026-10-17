@@ -1,0 +1,25 @@
+{
+    "files.associations": {
+        "*.h": "c",
+        "*.hpp": "cpp",
+        "*.tpp": "cpp"
+    },
+    "search.exclude": {
+        "**/board/build": true,
+        "**/board/Drivers/CMSIS/DSP": true,
+        "**/board/Drivers/CMSIS/NN": true,
+        "**/board/Drivers/CMSIS/Core": true,
+        "**/board/Drivers/CMSIS/Core_A": true,
+        "**/board/Drivers/CMSIS/DAP": true,
+        "**/board/Drivers/CMSIS/Documentation": true
+    },
+    "files.watcherExclude": {
+        "**/board/build/**": true,
+        "**/board/Drivers/CMSIS/DSP/**": true,
+        "**/board/Drivers/CMSIS/NN/**": true
+    },
+    "C_Cpp.files.exclude": {
+        "**/.vscode": true,
+        "**/.vs": true
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "STM32F407",
+            "compilerPath": "D:/software/STM32CubeCLT_1.19.0/GNU-tools-for-STM32/bin/arm-none-eabi-gcc.exe",
+            "compilerArgs": [
+                "-mcpu=cortex-m4",
+                "-mfpu=fpv4-sp-d16",
+                "-mfloat-abi=hard"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-arm",
+            "includePath": [
+                "${workspaceFolder}/board/Core/Inc",
+                "${workspaceFolder}/board/Drivers/STM32F4xx_HAL_Driver/Inc",
+                "${workspaceFolder}/board/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+                "${workspaceFolder}/board/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+                "${workspaceFolder}/board/Drivers/CMSIS/Include",
+                "${workspaceFolder}/board/Middlewares/Third_Party/FreeRTOS/Source/include",
+                "${workspaceFolder}/board/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2",
+                "${workspaceFolder}/board/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F",
+                "${workspaceFolder}/bsp/include",
+                "${workspaceFolder}/libs/include",
+                "${workspaceFolder}/modules/include",
+                "${workspaceFolder}/threads/include"
+            ],
+            "defines": [
+                "USE_HAL_DRIVER",
+                "STM32F407xx",
+                "DEBUG"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/board/Core",
+                    "${workspaceFolder}/board/Drivers/STM32F4xx_HAL_Driver",
+                    "${workspaceFolder}/board/Drivers/CMSIS/Device/ST/STM32F4xx",
+                    "${workspaceFolder}/board/Drivers/CMSIS/Include",
+                    "${workspaceFolder}/board/Middlewares",
+                    "${workspaceFolder}/bsp",
+                    "${workspaceFolder}/libs",
+                    "${workspaceFolder}/modules",
+                    "${workspaceFolder}/threads"
+                ],
+                "limitSymbolsToIncludedHeaders": false
+            }
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+# Build output
+build/
+board/build/
+*.elf
+*.map
+*.o
+*.obj
+
+# Editor / tooling caches
+.vscode/ipch/
+.vs/
