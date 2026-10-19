@@ -1,0 +1,9 @@
+c板引脚
+    PH10 GPIOOUT 蓝灯
+    PH11 GPIOOUT 绿灯
+    PH12 GPIOOUT 红灯
+函数
+    HAL_GPIO_TogglePin(GPIOH, GPIO_PIN_10);翻转电平 PH10
+    HAL_GPIO_WritePin(GPIOH, GPIO_PIN_10, GPIO_PIN_RESET);低电平
+    HAL_GPIO_WritePin(GPIOH, GPIO_PIN_10, GPIO_PIN_SET);高电平
+    HAL_Delay(500);等待500毫秒

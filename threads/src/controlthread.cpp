@@ -29,7 +29,7 @@ extern "C" void ControlThreadEntry(ULONG thread_input)
 
     /* [AI] 初始状态：松开、目标为 0 */
     motor.controlMode = DJIMotor::RELAX_MODE;
-    motor.speedSet = 0.0f;
+    motor.speedSet = 1.0f;
     motor.positionSet = 0.0f;
     motor.currentSet = 0;
 
@@ -37,7 +37,6 @@ extern "C" void ControlThreadEntry(ULONG thread_input)
 
     for (;;)
     {
-        /* ---------- 1. 上电保护：前 1 秒强制松开 ---------- */
         if ((tx_time_get() - start_tick) < kStartupRelaxTicks)
         {
             motor.controlMode = DJIMotor::RELAX_MODE;
@@ -45,7 +44,6 @@ extern "C" void ControlThreadEntry(ULONG thread_input)
         }
         else
         {
-            /* ---------- 2. 按外部设定的模式运行 ---------- */
             switch (g_control_mode)
             {
             case THREADS_CONTROL_SPEED:
@@ -65,15 +63,10 @@ extern "C" void ControlThreadEntry(ULONG thread_input)
             }
         }
 
-        /* ---------- 3. 计算输出 → 发控制帧 → 在线检查 ---------- */
         motor.setOutput();
         handler->sendControlData();
         handler->AllMotorAliveCheck();
-
-        /* ---------- 4. 心跳 + 1kHz ---------- */
-        /* [AI] 心跳放在循环末尾：能跑到这里说明本线程这一周期完整执行了 */
         tx_semaphore_put(&g_control_heartbeat_sem);
-
         tx_thread_sleep(1);
     }
 }

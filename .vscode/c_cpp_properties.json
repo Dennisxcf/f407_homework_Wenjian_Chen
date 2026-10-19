@@ -18,9 +18,9 @@
                 "${workspaceFolder}/board/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
                 "${workspaceFolder}/board/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
                 "${workspaceFolder}/board/Drivers/CMSIS/Include",
-                "${workspaceFolder}/board/Middlewares/Third_Party/FreeRTOS/Source/include",
-                "${workspaceFolder}/board/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2",
-                "${workspaceFolder}/board/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F",
+                "${workspaceFolder}/board/AZURE_RTOS/App",
+                "${workspaceFolder}/board/Middlewares/ST/threadx/common/inc",
+                "${workspaceFolder}/board/Middlewares/ST/threadx/ports/cortex_m4/gnu/inc",
                 "${workspaceFolder}/bsp/include",
                 "${workspaceFolder}/libs/include",
                 "${workspaceFolder}/modules/include",
@@ -29,6 +29,7 @@
             "defines": [
                 "USE_HAL_DRIVER",
                 "STM32F407xx",
+                "TX_INCLUDE_USER_DEFINE_FILE",
                 "DEBUG"
             ],
             "browse": {

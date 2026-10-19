@@ -44,23 +44,20 @@ void CAN_Transmit(CAN_HandleTypeDef *hcan, uint32_t Id, uint8_t *msg, uint16_t l
         return;
     }
     // TODO: 校验标准帧 ID 和 DLC (0~8)，构造帧头并调用 HAL_CAN_AddTxMessage。
-    // ---------------------------------------------------------------------
-    // [AI] 以下为实现，均在 TODO 区内
-    // ---------------------------------------------------------------------
-    if (msg == nullptr) // [AI] msg 为空会在 HAL 内部解引用崩溃
+    if (msg == nullptr) // msg 为空会在 HAL 内部解引用崩溃
     {
         return;
     }
-    if (Id > 0x7FFU) // [AI] 只支持标准帧
+    if (Id > 0x7FFU) // [只支持标准帧
     {
         return;
     }
-    if (len == 0U || len > 8U) // [AI] 经典 CAN 数据段为 1~8 字节
+    if (len == 0U || len > 8U) // CAN 数据段为 1~8 字节
     {
         return;
     }
 
-    CAN_TxHeaderTypeDef tx_Header = {0}; // [AI] 构造帧头
+    CAN_TxHeaderTypeDef tx_Header = {0}; // 构造帧头
     tx_Header.StdId = Id;
     tx_Header.ExtId = 0;
     tx_Header.IDE = CAN_ID_STD;
@@ -68,20 +65,17 @@ void CAN_Transmit(CAN_HandleTypeDef *hcan, uint32_t Id, uint8_t *msg, uint16_t l
     tx_Header.DLC = len;
     tx_Header.TransmitGlobalTime = DISABLE;
 
-    // [AI] HAL_CAN_AddTxMessage 不看 DLC，会无条件读 aData[0]~aData[7]
-    //      （stm32f4xx_hal_can.c:1310 起），所以 len < 8 时必须自己补零
     uint8_t data[8] = {0};
     for (uint16_t i = 0; i < len; i++)
     {
         data[i] = msg[i];
     }
 
-    // [AI] 第 4 个参数是输出参数（回传用了哪个邮箱：0x01/0x02/0x04），
-    //      必须是有效地址，不能传 nullptr；本项目用不到该值
+    //必须是有效地址，不能传 nullptr；本项目用不到该值
     uint32_t tx_mailbox = 0U;
     if (HAL_CAN_AddTxMessage(hcan, &tx_Header, data, &tx_mailbox) != HAL_OK)
     {
-        // [AI] 失败常见原因是邮箱满或外设未 HAL_CAN_Start，调试时可在此打日志
+        // 失败
     }
     // if(Id>0x7FF) return;
     // if(len>8||len==0) return;

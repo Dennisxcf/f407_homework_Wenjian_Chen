@@ -91,7 +91,7 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
+  //MX_GPIO_Init();
   MX_CAN1_Init();
   MX_I2C3_Init();
   MX_SPI1_Init();
@@ -103,6 +103,8 @@ int main(void)
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
   bsp_Init();
+  // HAL_GPIO_WritePin(GPIOH, GPIO_PIN_11, GPIO_PIN_SET);
+  // HAL_GPIO_WritePin(GPIOH, GPIO_PIN_12, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   MX_ThreadX_Init();
@@ -114,7 +116,13 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    
+    // while(1)
+    // {
+    //   HAL_GPIO_TogglePin(GPIOH, GPIO_PIN_11);
+    //   HAL_Delay(500);
+    // }
+    
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

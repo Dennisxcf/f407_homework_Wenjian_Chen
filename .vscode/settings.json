@@ -1,4 +1,6 @@
 {
+    "cmake.sourceDirectory": "${workspaceFolder}/board",
+    "cmake.useCMakePresets": "always",
     "files.associations": {
         "*.h": "c",
         "*.hpp": "cpp",
